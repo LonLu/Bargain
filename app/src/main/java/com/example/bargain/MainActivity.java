@@ -1,6 +1,8 @@
 package com.example.bargain;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -24,35 +26,24 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseReference database;
-    TextView textView;
-    Button button;
+    SearchedRecyclerView searchedRecyclerView;
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyThread myThread = new MyThread();
-                Thread thread = new Thread(myThread);
-                thread.start();
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {}
-                YerevanMobile yerevanMobile = myThread.GetYerevanMobile();
-                database.push().setValue(yerevanMobile);
-
-            }
-        });
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new SearchedRecyclerView();
+        recyclerView.setAdapter(adapter);
 
 
     }
     public void init(){
         database = FirebaseDatabase.getInstance().getReference();
-        textView = findViewById(R.id.textView);
-        button = findViewById(R.id.button);
     }
 
 
