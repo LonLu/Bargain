@@ -1,13 +1,14 @@
 package com.example.bargain;
 
 public class MyThread implements Runnable {
-    YerevanMobile yerevanMobile;
+    MobileCentre mobileCentre;
     @Override
     public void run() {
-        yerevanMobile = new YerevanMobile("https://yerevanmobile.am/am/apple-macbook-pro-13-m1-8gb-ram-256gb-ssd-myd82-space-grey.html");
+        MobileCentre mobileCentre = new MobileCentre("https://www.mobilecentre.am/product/samsung-galaxy-s23-128gb-_beige_/28568/");
+        this.mobileCentre = mobileCentre;
     }
 
-    public YerevanMobile GetYerevanMobile(){
-        return yerevanMobile;
+    public MobileCentre getMobileCentre(){
+        return mobileCentre;
     }
 }

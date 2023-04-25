@@ -1,53 +1,56 @@
 package com.example.bargain;
 
-import java.io.IOException;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public abstract class JsoupScan {
-    public String Get(String URL, String name){
+
+    public String get(String URL, String name){
         return null;
     }
-    public Document GetDocument(String URL){
+    public Document getDocument(String URL){
         return null;
     }
-    public String GetName(String URL){
+    public String getName(String URL){
         return null;
     }
-    public boolean GetAvailability(String URL){
+    public String getImage(String URL){
+        return null;
+    }
+    public boolean getAvailability(String URL){
         return false;
     }
-    public String GetPrice(String URL){
+    public String getPrice(String URL){
         return null;
     }
-    public String GetReleaseDate(String URL){
+    public String getReleaseDate(String URL){
         return null;
     }
-    public String GetGuarantee(String URL){
+    public String getGuarantee(String URL){
         return null;
     }
-    public String GetProcessor(String URL){
+    public String getProcessor(String URL){
         return null;
     }
-    public String GetOS(String URL){
+    public String getOS(String URL){
         return null;
     }
-    public String GetMemory(String URL){
+    public String getMemory(String URL){
         return null;
     }
-    public String GetMemoryType(String URL){
+    public String getMemoryType(String URL){
         return null;
     }
-    public String GetRam(String URL){
+    public String getRam(String URL){
         return null;
     }
-    public String GetScreenLength(String URL){
+    public String getScreenLength(String URL){
         return null;
     }
-    public String GetURL(String URL){
+    public String getCamera(String URL){
+        return null;
+    }
+    public String getURL(String URL){
         return URL;
     }
 }

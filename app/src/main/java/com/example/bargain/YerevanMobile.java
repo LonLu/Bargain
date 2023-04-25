@@ -21,7 +21,7 @@ public class YerevanMobile extends JsoupScan{
     public String Memory;
     public String Memory_Type;
     public String Ram;
-    public String Scree_Length;
+    public String Screen_Length;
     public String URL;
 
 
@@ -29,23 +29,23 @@ public class YerevanMobile extends JsoupScan{
     public YerevanMobile() {}
 
     public YerevanMobile(String URL) {
-        Name = GetName(URL);
-        Availability = GetAvailability(URL);
-        Price = GetPrice(URL);
-        Release_Date = GetReleaseDate(URL);
-        Guarantee = GetGuarantee(URL);
-        Processor = GetProcessor(URL);
-        OS = GetOS(URL);
-        Memory = GetMemory(URL);
-        Memory_Type = GetMemoryType(URL);
-        Ram = GetRam(URL);
-        Scree_Length = GetScreenLength(URL);
-        this.URL = GetURL(URL);
+        Name = getName(URL);
+        Availability = getAvailability(URL);
+        Price = getPrice(URL);
+        Release_Date = getReleaseDate(URL);
+        Guarantee = getGuarantee(URL);
+        Processor = getProcessor(URL);
+        OS = getOS(URL);
+        Memory = getMemory(URL);
+        Memory_Type = getMemoryType(URL);
+        Ram = getRam(URL);
+        Screen_Length = getScreenLength(URL);
+        this.URL = getURL(URL);
     }
 
     @Override
-    public String Get(String URL, String td_name) {
-        Document doc = GetDocument(URL);
+    public String get(String URL, String td_name) {
+        Document doc = getDocument(URL);
         Elements DETAILS_BLOCK_LIST = doc.getElementsByClass("details_block");
         Elements elements = DETAILS_BLOCK_LIST.select("td");
         ArrayList<String> arrayList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class YerevanMobile extends JsoupScan{
     }
 
     @Override
-    public Document GetDocument(String URL){
+    public Document getDocument(String URL){
         Document doc = null;
         try {
             doc = Jsoup.connect(URL).get();
@@ -76,13 +76,17 @@ public class YerevanMobile extends JsoupScan{
     }
 
     @Override
-    public String GetName(String URL){
-        return super.GetName(URL);
+    public String getName(String URL){
+        Document doc = getDocument(URL);
+        Elements NAME_LIST = doc.getElementsByClass("base");
+        String[] NAME_ARRAY = NAME_LIST.first().text().split("/");
+        String NAME = NAME_ARRAY[0];
+        return NAME;
     }
 
     @Override
-    public boolean GetAvailability(String URL){
-        Document doc = GetDocument(URL);
+    public boolean getAvailability(String URL){
+        Document doc = getDocument(URL);
         Elements AVAILABILITY_LIST = doc.getElementsByClass("stock unavailable");
         Element AVAILABILITY = AVAILABILITY_LIST.first();
         if(AVAILABILITY == null) return true;
@@ -94,8 +98,8 @@ public class YerevanMobile extends JsoupScan{
     }
 
     @Override
-    public String GetPrice(String URL){
-        Document doc = GetDocument(URL);
+    public String getPrice(String URL){
+        Document doc = getDocument(URL);
         Elements PRICE_LIST = doc.getElementsByClass("price");
         Element PRICE_ELEMENT = PRICE_LIST.get(0);
         String PRICE = PRICE_ELEMENT.text();
@@ -108,47 +112,49 @@ public class YerevanMobile extends JsoupScan{
     }
 
     @Override
-    public String GetReleaseDate(String URL) {
-        return Get(URL, "Հայտարարության Տարին");
+    public String getReleaseDate(String URL) {
+        return get(URL, "Հայտարարության Տարին");
     }
 
     @Override
-    public String GetGuarantee(String URL) {
-        return Get(URL, "Երաշխիք");
+    public String getGuarantee(String URL) {
+        return get(URL, "Երաշխիք");
     }
 
     @Override
-    public String GetProcessor(String URL) {
-        return Get(URL, "Պրոցեսորի տեսակ");
+    public String getProcessor(String URL) {
+        return get(URL, "Պրոցեսորի տեսակ");
     }
 
     @Override
-    public String GetOS(String URL) {
-        return Get(URL, "ՕՀ Տեսակ");
+    public String getOS(String URL) {
+        return get(URL, "ՕՀ Տեսակ");
     }
 
     @Override
-    public String GetMemory(String URL){
-        return Get(URL, "Կոշտ սկավառակի հիշողություն");
+    public String getMemory(String URL){
+        return get(URL, "Կոշտ սկավառակի հիշողություն");
     }
 
     @Override
-    public String GetMemoryType(String URL){
-        return Get(URL, "Կոշտ սկավառակի տեսակ");
+    public String getMemoryType(String URL){
+        String type = get(URL, "Կոշտ սկավառակի տեսակ");
+        if(type == null) return "SSD";
+        return type;
     }
 
     @Override
-    public String GetRam(String URL){
+    public String getRam(String URL){
         return null;
     }
 
     @Override
-    public String GetScreenLength(String URL) {
-        return Get(URL, "Էկրանի չափը");
+    public String getScreenLength(String URL) {
+        return get(URL, "Էկրանի չափը");
     }
 
     @Override
-    public String GetURL(String URL){
-        return super.GetURL(URL);
+    public String getURL(String URL){
+        return super.getURL(URL);
     }
 }

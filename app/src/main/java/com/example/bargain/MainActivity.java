@@ -4,27 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
-import com.google.firebase.database.ValueEventListener;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    ArrayList<String> YerevanMobileURL;
     DatabaseReference database;
     SearchedRecyclerView searchedRecyclerView;
     RecyclerView.Adapter adapter;
@@ -34,12 +23,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new SearchedRecyclerView();
-        recyclerView.setAdapter(adapter);
-
+//        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        adapter = new SearchedRecyclerView(100);
+//        recyclerView.setAdapter(adapter);
+        MyThread myThread = new MyThread();
+        Thread thread = new Thread(myThread);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            Log.i("blyaerror", e.toString());
+        }
+        database.push().setValue(myThread.getMobileCentre());
 
     }
     public void init(){
