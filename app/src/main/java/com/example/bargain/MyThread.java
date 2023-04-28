@@ -1,13 +1,13 @@
 package com.example.bargain;
 
 public class MyThread implements Runnable {
-    MobileCentre mobileCentre;
+    Vega vega;
     @Override
     public void run() {
-        mobileCentre = new MobileCentre("https://www.mobilecentre.am/product/apple-ipad-pro-11-wi-fi-256gb-_2022_-silver/28211/");
+        vega = new Vega("https://vega.am/am/smart-herhakhos-samsung-galaxy-a04s-sm-a047fds-3gb-32gb-bk.html");
     }
 
-    public MobileCentre getMobileCentre(){
-        return mobileCentre;
+    public Vega getVega(){
+        return vega;
     }
 }
