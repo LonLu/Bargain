@@ -28,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
 //        recyclerView.setLayoutManager(linearLayoutManager);
 //        adapter = new SearchedRecyclerView(100);
 //        recyclerView.setAdapter(adapter);
+
         MyThread myThread = new MyThread();
         Thread thread = new Thread(myThread);
         thread.start();
         try {
             thread.join();
         } catch (InterruptedException e) {
-            Log.i("blyaerror", e.toString());
+            Log.i("miBan", e.toString());
         }
         database.push().setValue(myThread.getMobileCentre());
+
 
     }
     public void init(){

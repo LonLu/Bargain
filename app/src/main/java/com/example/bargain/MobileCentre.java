@@ -9,149 +9,80 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MobileCentre extends JsoupScan{
+public class MobileCentre{
     public String Name, Price, Image, Release_Date, Guarantee, Processor, OS, Memory,
-            Memory_Type, Ram, Screen_Length, Camera, URL;
+            Memory_Type, Ram, Screen_Length, Camera, URL, SIM;
     public boolean Availability;
 
-    public MobileCentre(){}
-
-    public MobileCentre(String URL){
-        Name = getName(URL);
-        Availability = getAvailability(URL);
-        Price = getPrice(URL);
-        Image = getImage(URL);
-        Release_Date = getReleaseDate(URL);
-        Guarantee = getGuarantee(URL);
-        Processor = getProcessor(URL);
-        OS = getOS(URL);
-        Memory = getMemory(URL);
-        Memory_Type = getMemoryType(URL);
-        Ram = getRam(URL);
-        Screen_Length = getScreenLength(URL);
-        Camera = getCamera(URL);
-        this.URL = getURL(URL);
+    public MobileCentre() {
     }
-    @Override
-    public String get(String URL, String name) {
-        String result = null;
+
+
+    public MobileCentre(String URL) {
         ArrayList<String> array_key = new ArrayList<>();
         ArrayList<String> array_value = new ArrayList<>();
+        StringBuilder processorBuilder = new StringBuilder();
         Document doc = getDocument(URL);
         Elements keys = doc.getElementsByClass("col-lg-3 col-md-3 col-sm-6 col-xs-6 rowname");
         Elements values = doc.getElementsByClass("col-lg-9 col-md-9 col-sm-6 col-xs-6");
         int i = 0;
-        try{
-            while (true){
+        try {
+            while (true) {
                 array_key.add(keys.get(i).text());
                 array_value.add(values.get(i).text());
                 i++;
             }
-        }catch (Exception ignored){}
-        for (int j = 0; j < array_key.size(); j++) {
-            if (Objects.equals(array_key.get(j), name)){
-                result = array_value.get(j);
-                array_key.clear();
-                array_value.clear();
-            }
+        } catch (Exception ignored) {}
+        ArrayList<ArrayList<String>> arr = new ArrayList<>();
+        arr.add(array_key);
+        arr.add(array_value);
+
+
+        for(int j = 0; j < arr.get(0).size(); j++){
+            if(Objects.equals(arr.get(0).get(j), "Հայտարարության տարին")) Release_Date = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Երաշխիք")) Guarantee = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "ՕՀ տեսակ") || Objects.equals(arr.get(0).get(j), "Օպերացիոն համակարգ")) OS = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Կոշտ սկավառակի հիշողություն") || Objects.equals(arr.get(0).get(j), "Հիշողություն")) Memory = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Կոշտ սկավառակի տեսակ")) Memory_Type = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Օպերատիվ հիշողություն")) Ram = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Էկրանի չափսը") || Objects.equals(arr.get(0).get(j), "Էկրան")) Screen_Length = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Հիմնական տեսախցիկ")) Camera = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "SIM քարտի քանակ")) SIM = arr.get(1).get(j);
+            else if(Objects.equals(arr.get(0).get(j), "Չիպսեթ")) processorBuilder.append(arr.get(1).get(j)).append(" ");
+            else if(Objects.equals(arr.get(0).get(j), "Պրոցեսորի միջուկ") || Objects.equals(arr.get(0).get(j), "Պրոցեսորների միջուկների քանակը")) processorBuilder.append(arr.get(1).get(j)).append(" ");
+            else if(Objects.equals(arr.get(0).get(j), "Պրոցեսոր")) processorBuilder.append(arr.get(1).get(j));
+            this.URL = URL;
         }
-        return result;
+
+        Processor = processorBuilder.toString();
+        Name = doc.select("h1").text();
+
+        Elements img = doc.getElementsByClass("item active").select("img");
+        Image = img.attr("src");
+
+        Elements availability = doc.getElementById("myCarousel").select("span");
+        Availability = !availability.text().equals("Առկա չէ");
+
+        String amount = doc.getElementsByClass("regular").first().text();
+        String[] array_amount = amount.split("");
+        StringBuilder price = new StringBuilder();
+        for (int j = 0; j < array_amount.length - 3; j++) {
+            if (Objects.equals(array_amount[j], ",")) array_amount[j] = ".";
+            price.append(array_amount[j]);
+        }
+        Price = price.toString();
     }
 
-    @Override
     public Document getDocument(String URL) {
         Document document = null;
-        try{
+        try {
             document = Jsoup.connect(URL).get();
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.i("DocumentError", e.toString());
         }
         return document;
     }
 
-    @Override
-    public String getName(String URL) {
-        Document doc = getDocument(URL);
-        return doc.select("h1").text();
-    }
 
-    @Override
-    public String getImage(String URL){
-        Document doc = getDocument(URL);
-        Elements img = doc.getElementsByClass("item active").select("img");
-        return img.attr("src");
-    }
 
-    @Override
-    public boolean getAvailability(String URL) {
-        Document doc = getDocument(URL);
-        Elements availability = doc.getElementById("myCarousel").select("span");
-        return !availability.text().equals("Առկա չէ");
-    }
-
-    @Override
-    public String getPrice(String URL) {
-        Document doc = getDocument(URL);
-        String amount = doc.getElementsByClass("regular").first().text();
-        String[] array_amount = amount.split("");
-        StringBuilder price = new StringBuilder();
-        for (int i = 0; i < array_amount.length - 3; i++){
-            if(Objects.equals(array_amount[i], ",")) array_amount[i] = ".";
-            price.append(array_amount[i]);
-        }
-    return price.toString();
-    }
-
-    @Override
-    public String getReleaseDate(String URL) {
-        return get(URL, "Հայտարարության տարին");
-    }
-
-    @Override
-    public String getGuarantee(String URL) {
-        return get(URL, "Երաշխիք");
-    }
-
-    @Override
-    public String getProcessor(String URL) {
-        StringBuilder x = new StringBuilder();
-        if (get(URL, "Չիպսեթ") != null) x.append(get(URL, "Չիպսեթ")).append(" ");
-        if(get(URL, "Պրոցեսորի միջուկ") != null) x.append(get(URL, "Պրոցեսորի միջուկ")).append(" ");
-        return x.append(get(URL, "Պրոցեսոր")).toString();
-    }
-
-    @Override
-    public String getOS(String URL) {
-        return get(URL, "ՕՀ տեսակ");
-    }
-
-    @Override
-    public String getMemory(String URL) {
-        return get(URL, "Կոշտ սկավառակի հիշողություն");
-    }
-
-    @Override
-    public String getMemoryType(String URL) {
-        return get(URL, "Կոշտ սկավառակի տեսակ");
-    }
-
-    @Override
-    public String getRam(String URL) {
-        return get(URL, "Օպերատիվ հիշողություն");
-    }
-
-    @Override
-    public String getScreenLength(String URL) {
-        return get(URL, "Էկրանի չափսը");
-    }
-
-    @Override
-    public String getCamera(String URL) {
-        return get(URL, "Հիմնական տեսախցիկ");
-    }
-
-    @Override
-    public String getURL(String URL) {
-        return URL;
-    }
 }
