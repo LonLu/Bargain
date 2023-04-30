@@ -30,10 +30,10 @@ public class Vega {
         Availability = document.getElementById("blink7").text().equals("Առկա է");
 
         Elements characteristics = document.getElementsByClass("attribute");
-        Elements x = characteristics.select("td");
+        Elements td = characteristics.select("td");
         ArrayList<String> arrayList = new ArrayList<>();
-        for(int i = 0; i < x.size(); i++){
-            arrayList.add(x.get(i).text());
+        for(int i = 0; i < td.size(); i++){
+            arrayList.add(td.get(i).text());
             if(i >= 1){
                 if(Objects.equals(arrayList.get(i - 1), "Էկրանի չափս")) Screen_Length = arrayList.get(i) + " inch";
                 else if(Objects.equals(arrayList.get(i - 1), "SIM")) SIM = arrayList.get(i);

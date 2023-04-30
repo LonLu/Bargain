@@ -19,20 +19,13 @@ public class MobileCentre{
 
 
     public MobileCentre(String URL) {
-        ArrayList<String> array_key = new ArrayList<>();
-        ArrayList<String> array_value = new ArrayList<>();
+
         StringBuilder processorBuilder = new StringBuilder();
         Document doc = getDocument(URL);
         Elements keys = doc.getElementsByClass("col-lg-3 col-md-3 col-sm-6 col-xs-6 rowname");
         Elements values = doc.getElementsByClass("col-lg-9 col-md-9 col-sm-6 col-xs-6");
-        int i = 0;
-        try {
-            while (true) {
-                array_key.add(keys.get(i).text());
-                array_value.add(values.get(i).text());
-                i++;
-            }
-        } catch (Exception ignored) {}
+        ArrayList<String> array_key = new ArrayList<>(keys.eachText());
+        ArrayList<String> array_value = new ArrayList<>(values.eachText());
         ArrayList<ArrayList<String>> arr = new ArrayList<>();
         arr.add(array_key);
         arr.add(array_value);
@@ -82,7 +75,5 @@ public class MobileCentre{
         }
         return document;
     }
-
-
 
 }
