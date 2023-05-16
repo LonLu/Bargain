@@ -28,7 +28,7 @@ public class SearchedRecyclerView extends RecyclerView.Adapter<SearchedRecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewExemplar holder, int position) {
-        holder.bind(position);
+
     }
 
     @Override
@@ -37,15 +37,11 @@ public class SearchedRecyclerView extends RecyclerView.Adapter<SearchedRecyclerV
     }
 
     static class RecyclerViewExemplar extends RecyclerView.ViewHolder{
-        TextView textViewNumber;
-
         public RecyclerViewExemplar(@NonNull View itemView) {
             super(itemView);
-            textViewNumber = itemView.findViewById(R.id.textView);
         }
 
-        public void bind(int listindex){
-            textViewNumber.setText(String.valueOf(listindex));
+        public void bind(int listIndex) {
         }
     }
 }
