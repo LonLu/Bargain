@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.xmlpull.v1.sax2.Driver;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -65,6 +76,23 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        int firstIndex = 0;
+        int secondIndex = 0;
+        boolean firstBool = true;
+        int exceptionCounter = 0;
+        while (firstBool){
+            try {
+                YerevanMobile yerevanMobile = new YerevanMobile(this, firstIndex, secondIndex);
+                database.push().setValue(yerevanMobile);
+                secondIndex++;
+                exceptionCounter = 0;
+            }catch (Exception e){
+                firstIndex++;
+                secondIndex = 0;
+                exceptionCounter++;
+                if(exceptionCounter == 2) firstBool = false;
+            }
+        }
 
     }
     public void init(){
@@ -86,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         home_intent = new Intent(this, MainActivity.class);
 
     }
-
 
 }
 
