@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //        } catch (InterruptedException e) {
 //            Log.i("miBan", e.toString());
 //        }
-
+//
 //        database.push().setValue(myThread.getVega());
 //        database.push().setValue(myThread.getMobileCentre());
 //        database.push().setValue(myThread.getZigzag());
@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(phone_intent);
             }
         });
-
-
 
 
     }
@@ -103,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         home_intent = new Intent(this, MainActivity.class);
 
-
-        getFromYerevanMobile();
+//        getFromYerevanMobile();
 
     }
 

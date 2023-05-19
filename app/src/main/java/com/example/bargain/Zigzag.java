@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Zigzag {
-    public String Name, Price, Image, Release_Date, Guarantee, Processor, OS, Memory,
-            Memory_Type, Ram, Screen_Length, Camera, URL, SIM;
-    public boolean Availability;
+    private String name, price, image, release_Date, guarantee, processor, os, memory,
+            memory_Type, ram, screen_Length, camera, url, sim;
+    private boolean availability;
 
     public Zigzag() {
     }
@@ -19,15 +19,15 @@ public class Zigzag {
     public Zigzag(String URL){
         Document document = getDocument(URL);
         Elements image_element = document.getElementsByClass("big_images");
-        Image = image_element.select("a").first().attr("href");
+        image = image_element.select("a").first().attr("href");
         Elements price_element = document.getElementsByClass("price");
-        Price = price_element.first().text();
+        price = price_element.first().text();
 
         Elements name_element = document.getElementsByClass("value");
-        Name = name_element.first().text();
+        name = name_element.first().text();
 
         Elements availability_element = document.getElementsByClass("stock status_block in_stock");
-        Availability = availability_element.text().equals("Առկա է");
+        availability = availability_element.text().equals("Առկա է");
 
         Elements key = document.getElementsByClass("detail_name");
         ArrayList<String> key_array = new ArrayList<>(key.eachText());
@@ -37,25 +37,25 @@ public class Zigzag {
         StringBuilder processor_builder = new StringBuilder();
 
         for (int i = 0; i < key_array.size(); i++){
-            if(Objects.equals(key_array.get(i), "Երաշխիք")) Guarantee = value_array.get(i);
-            else if(Objects.equals(key_array.get(i), "Օպերացիոն համակարգ")) OS = value_array.get(i);
-            else if(Objects.equals(key_array.get(i), "Անկյունագիծ")) Screen_Length = value_array.get(i);
-            else if(Objects.equals(key_array.get(i), "Տեսախցիկի կետայնություն")) Camera = value_array.get(i);
-            else if(Objects.equals(key_array.get(i), "Ներկառուցված հիշողություն (ROM)")) Memory = value_array.get(i);
+            if(Objects.equals(key_array.get(i), "Երաշխիք")) guarantee = value_array.get(i);
+            else if(Objects.equals(key_array.get(i), "Օպերացիոն համակարգ")) os = value_array.get(i);
+            else if(Objects.equals(key_array.get(i), "Անկյունագիծ")) screen_Length = value_array.get(i);
+            else if(Objects.equals(key_array.get(i), "Տեսախցիկի կետայնություն")) camera = value_array.get(i);
+            else if(Objects.equals(key_array.get(i), "Ներկառուցված հիշողություն (ROM)")) memory = value_array.get(i);
             else if(Objects.equals(key_array.get(i), "SSD կուտակիչ")) {
-                Memory_Type = "SSD";
-                Memory = value_array.get(i);
+                memory_Type = "SSD";
+                memory = value_array.get(i);
             }
-            else if(Objects.equals(key_array.get(i), "Օպերատիվ հիշողություն (RAM)")) Ram = value_array.get(i);
+            else if(Objects.equals(key_array.get(i), "Օպերատիվ հիշողություն (RAM)")) ram = value_array.get(i);
             else if(Objects.equals(key_array.get(i), "SIM քարտերի քանակ")) SIM_builder.append(value_array.get(i)).append(" ");
             else if(Objects.equals(key_array.get(i), "SIM քարտի տեսակ")) SIM_builder.append(value_array.get(i)).append(" ");
             else if(Objects.equals(key_array.get(i), "Պրոցեսորի Արտադրող")) processor_builder.append(value_array.get(i)).append(" ");
             else if(Objects.equals(key_array.get(i), "Պրոցեսորի տեսակ")) processor_builder.append(value_array.get(i)).append(" ");
             else if(Objects.equals(key_array.get(i), "Հաճախականություն")) processor_builder.append(value_array.get(i)).append(" ");
         }
-        if(!SIM_builder.toString().equals("")) SIM = SIM_builder.toString();
-        Processor = processor_builder.toString();
-        this.URL = URL;
+        if(!SIM_builder.toString().equals("")) sim = SIM_builder.toString();
+        processor = processor_builder.toString();
+        url = URL;
     }
 
     public Document getDocument(String URL){
@@ -64,5 +64,65 @@ public class Zigzag {
             document = Jsoup.connect(URL).get();
         } catch (IOException ignored) {}
         return document;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getRelease_Date() {
+        return release_Date;
+    }
+
+    public String getGuarantee() {
+        return guarantee;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public String getMemory() {
+        return memory;
+    }
+
+    public String getMemory_Type() {
+        return memory_Type;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public String getScreen_Length() {
+        return screen_Length;
+    }
+
+    public String getCamera() {
+        return camera;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getSim() {
+        return sim;
+    }
+
+    public boolean isAvailability() {
+        return availability;
     }
 }

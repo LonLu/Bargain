@@ -11,11 +11,11 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class YerevanMobile {
-    public String Name, Cash_Price, Not_Cash_Price, Image, Release_Date, Guarantee, Processor, OS, Memory,
-            Memory_Type, Ram, Screen_Length, Camera, URL, SIM;
-    public boolean Availability;
+    private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
+            memory_Type, ram, screen_Length, camera, url, sim;
+    private boolean availability;
 
-    public YerevanMobile() {
+    private YerevanMobile() {
     }
 
     public YerevanMobile(Context context, int objectListIndex, int oneObjectIndex){
@@ -33,21 +33,85 @@ public class YerevanMobile {
 
         ArrayList<ArrayList<String>> one_type_object = objects_list.get(objectListIndex);
         ArrayList<String> one_object = one_type_object.get(oneObjectIndex);
-        Name = one_object.get(0);
-        Availability = Boolean.parseBoolean(one_object.get(1));
-        Image = one_object.get(2);
-        Cash_Price = one_object.get(3);
-        Not_Cash_Price = one_object.get(4);
-        SIM = one_object.get(5);
-        Memory_Type = one_object.get(6);
-        Memory = one_object.get(7);
-        Ram = one_object.get(8);
-        Guarantee = one_object.get(9);
-        OS = one_object.get(10);
-        Release_Date = one_object.get(11);
-        Screen_Length = one_object.get(12);
-        Camera = one_object.get(13);
-        Processor = one_object.get(14);
-        URL = one_object.get(15);
+        name = one_object.get(0);
+        availability = Boolean.parseBoolean(one_object.get(1));
+        image = one_object.get(2);
+        cash_Price = one_object.get(3);
+        not_Cash_Price = one_object.get(4);
+        sim = one_object.get(5);
+        memory_Type = one_object.get(6);
+        memory = one_object.get(7);
+        ram = one_object.get(8);
+        guarantee = one_object.get(9);
+        os = one_object.get(10);
+        release_Date = one_object.get(11);
+        screen_Length = one_object.get(12);
+        camera = one_object.get(13);
+        processor = one_object.get(14);
+        url = one_object.get(15);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCash_Price() {
+        return cash_Price;
+    }
+
+    public String getNot_Cash_Price() {
+        return not_Cash_Price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getRelease_Date() {
+        return release_Date;
+    }
+
+    public String getGuarantee() {
+        return guarantee;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public String getMemory() {
+        return memory;
+    }
+
+    public String getMemory_Type() {
+        return memory_Type;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public String getScreen_Length() {
+        return screen_Length;
+    }
+
+    public String getCamera() {
+        return camera;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getSim() {
+        return sim;
+    }
+
+    public boolean isAvailability() {
+        return availability;
     }
 }

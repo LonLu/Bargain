@@ -15,13 +15,9 @@ public class MyThread implements Runnable {
     YerevanMobile yerevanMobile;
     @Override
     public void run() {
-//        vega = new Vega("https://vega.am/am/smart-herhakhos-samsung-galaxy-a23-sm-a235fdsn-4gb-64gb-peach.html");
+//        vega = new Vega("https://vega.am/am/smart-herhakhos-realme-c25y-4gb-128gb-rmx3269-bl.html");
 //        mobileCentre = new MobileCentre("https://www.mobilecentre.am/product/samsung-galaxy-a23-64gb-_peach_/27120/");
 //        zigzag = new Zigzag("https://www.zigzag.am/am/xiaomi-redmi-9a-2gb-32gb-midnight-black.html");
-    }
-
-    public Context getContext(Context context){
-        return context;
     }
 
     public Vega getVega(){
