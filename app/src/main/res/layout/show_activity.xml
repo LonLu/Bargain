@@ -34,13 +34,35 @@
         app:layout_constraintTop_toBottomOf="@+id/search"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="85dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <ImageButton
+            android:id="@+id/btnImg_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <ImageButton
+            android:id="@+id/btnImg_wait"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <ImageButton
+            android:id="@+id/btnImg_settings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

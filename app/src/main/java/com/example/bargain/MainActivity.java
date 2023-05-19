@@ -1,5 +1,6 @@
 package com.example.bargain;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,8 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.firebase.database.*;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.xmlpull.v1.sax2.Driver;
 
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Intent tablet_intent;
     Intent notebook_intent;
     Intent accessories_intent;
+
     Intent home_intent;
     Intent wait_intent;
     Intent settings_intent;
@@ -76,23 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        int firstIndex = 0;
-        int secondIndex = 0;
-        boolean firstBool = true;
-        int exceptionCounter = 0;
-        while (firstBool){
-            try {
-                YerevanMobile yerevanMobile = new YerevanMobile(this, firstIndex, secondIndex);
-                database.push().setValue(yerevanMobile);
-                secondIndex++;
-                exceptionCounter = 0;
-            }catch (Exception e){
-                firstIndex++;
-                secondIndex = 0;
-                exceptionCounter++;
-                if(exceptionCounter == 2) firstBool = false;
-            }
-        }
+
 
     }
     public void init(){
@@ -111,8 +100,35 @@ public class MainActivity extends AppCompatActivity {
         notebook_intent = new Intent(this, RecyclerViewActivity.class);
         accessories_intent = new Intent(this, RecyclerViewActivity.class);
 
+
         home_intent = new Intent(this, MainActivity.class);
 
+
+        getFromYerevanMobile();
+
+    }
+
+
+
+    public void getFromYerevanMobile(){
+
+        int firstIndex = 0;
+        int secondIndex = 0;
+        boolean firstBool = true;
+        int exceptionCounter = 0;
+        while (firstBool){
+            try {
+                YerevanMobile yerevanMobile = new YerevanMobile(this, firstIndex, secondIndex);
+                database.push().setValue(yerevanMobile);
+                secondIndex++;
+                exceptionCounter = 0;
+            }catch (Exception e){
+                firstIndex++;
+                secondIndex = 0;
+                exceptionCounter++;
+                if(exceptionCounter == 2) firstBool = false;
+            }
+        }
     }
 
 }
