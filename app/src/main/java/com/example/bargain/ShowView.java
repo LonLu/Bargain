@@ -9,12 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowView extends RecyclerView.Adapter<ShowView.RecyclerViewExemplar> {
     List<Product> product_list;
 
+
     public ShowView(List<Product> product_list){
+//        this.product_list = product_list;
         this.product_list = product_list;
     }
 
@@ -40,6 +43,12 @@ public class ShowView extends RecyclerView.Adapter<ShowView.RecyclerViewExemplar
     public int getItemCount() {
         return product_list.size();
     }
+
+    public void filterList(List<Product> filteredList) {
+        this.product_list = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     public static class RecyclerViewExemplar extends RecyclerView.ViewHolder{
         TextView sName;

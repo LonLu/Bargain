@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Zigzag {
     private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
-            memory_Type, ram, screen_Length, camera, url, sim;
+            memory_Type, ram, screen_Length, camera, url, sim, type;
     private boolean availability;
 
     public Zigzag() {
@@ -56,6 +56,8 @@ public class Zigzag {
         if(!SIM_builder.toString().equals("")) sim = SIM_builder.toString();
         processor = processor_builder.toString();
         url = URL;
+
+
     }
 
     public Document getDocument(String URL){
@@ -124,6 +126,10 @@ public class Zigzag {
 
     public String getSim() {
         return sim;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public boolean isAvailability() {

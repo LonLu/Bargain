@@ -2,14 +2,18 @@ package com.example.bargain;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.firebase.database.*;
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     DatabaseReference database;
+    SearchView searchView;
 
 
     @Override
@@ -72,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
 //        database.push().setValue(myThread.getMobileCentre());
 //        database.push().setValue(myThread.getZigzag());
 
-
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,9 +85,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchView.onActionViewExpanded();
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        return true;
+                    }
+                });
+            }
+        });
+
+
+
     }
     public void init(){
         database = FirebaseDatabase.getInstance().getReference();
+
+        searchView = (SearchView) findViewById(R.id.search);
 
         phone = (ImageButton) findViewById(R.id.btnImg_phone);
         tablet = (ImageButton) findViewById(R.id.btnImg_tablet);
