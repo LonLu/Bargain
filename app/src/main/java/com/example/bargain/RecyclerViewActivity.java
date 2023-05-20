@@ -33,7 +33,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        List<YerevanMobile> products = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         adapter = new ShowView(products);
         recyclerView.setAdapter(adapter);
 
@@ -43,7 +43,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 products.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    YerevanMobile product = dataSnapshot.getValue(YerevanMobile.class);
+                    Product product = dataSnapshot.getValue(Product.class);
                     products.add(product);
                 }
 

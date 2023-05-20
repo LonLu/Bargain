@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Zigzag {
-    private String name, price, image, release_Date, guarantee, processor, os, memory,
+    private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
 
@@ -21,7 +21,7 @@ public class Zigzag {
         Elements image_element = document.getElementsByClass("big_images");
         image = image_element.select("a").first().attr("href");
         Elements price_element = document.getElementsByClass("price");
-        price = price_element.first().text();
+        cash_Price = price_element.first().text();
 
         Elements name_element = document.getElementsByClass("value");
         name = name_element.first().text();
@@ -70,8 +70,12 @@ public class Zigzag {
         return name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getCash_Price() {
+        return cash_Price;
+    }
+
+    public String getNot_Cash_Price(){
+        return not_Cash_Price;
     }
 
     public String getImage() {

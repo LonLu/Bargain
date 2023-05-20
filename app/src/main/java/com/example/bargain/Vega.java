@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Vega {
-    private String name, price, image, release_Date, guarantee, processor, os, memory = "",
+    private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory = "",
             memory_Type = "", ram, screen_Length, camera, url, sim;
     private boolean Availability;
 
@@ -26,7 +26,7 @@ public class Vega {
             nameBuild.append(name_array[i]).append(" ");
         }
         name = nameBuild.toString();
-        price = document.getElementById("price-special").text();
+        cash_Price = document.getElementById("price-special").text();
         Availability = document.getElementById("blink7").text().equals("Առկա է");
 
         Elements characteristics = document.getElementsByClass("attribute");
@@ -89,8 +89,12 @@ public class Vega {
         return name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getCash_Price() {
+        return cash_Price;
+    }
+
+    public String getNot_Cash_Price(){
+        return not_Cash_Price;
     }
 
     public String getImage() {

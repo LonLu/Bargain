@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MobileCentre{
-    private String name, price, image, release_Date, guarantee, processor, os, memory,
+    private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
 
@@ -63,7 +63,7 @@ public class MobileCentre{
             if (Objects.equals(array_amount[j], ",")) array_amount[j] = ".";
             price_builder.append(array_amount[j]);
         }
-        price = price_builder.toString();
+        cash_Price = price_builder.toString();
     }
 
     public Document getDocument(String URL) {
@@ -80,8 +80,12 @@ public class MobileCentre{
         return name;
     }
 
-    public String getPrice() {
-        return price;
+    public String getCash_Price() {
+        return cash_Price;
+    }
+
+    public String getNot_Cash_Price(){
+        return not_Cash_Price;
     }
 
     public String getImage() {

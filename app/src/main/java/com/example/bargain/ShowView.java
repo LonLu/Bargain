@@ -9,13 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShowView extends RecyclerView.Adapter<ShowView.RecyclerViewExemplar> {
-    List<YerevanMobile> product_list;
+    List<Product> product_list;
 
-    public ShowView(List<YerevanMobile> product_list){
+    public ShowView(List<Product> product_list){
         this.product_list = product_list;
     }
 
@@ -32,7 +31,7 @@ public class ShowView extends RecyclerView.Adapter<ShowView.RecyclerViewExemplar
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewExemplar holder, int position) {
-        YerevanMobile product = product_list.get(position);
+        Product product = product_list.get(position);
         holder.sName.setText(product.getName());
         holder.sPrice.setText(product.getCash_Price());
     }
