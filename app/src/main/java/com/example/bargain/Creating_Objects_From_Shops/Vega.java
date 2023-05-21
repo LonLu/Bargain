@@ -1,4 +1,4 @@
-package com.example.bargain;
+package com.example.bargain.Creating_Objects_From_Shops;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,4 +1,4 @@
-package com.example.bargain;
+package com.example.bargain.Creating_Objects_From_Shops;
 
 import android.content.Context;
 import android.content.res.AssetManager;

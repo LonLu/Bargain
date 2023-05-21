@@ -9,14 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ShowView extends RecyclerView.Adapter<ShowView.RecyclerViewExemplar> {
+public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> {
     List<Product> product_list;
 
 
-    public ShowView(List<Product> product_list){
+    public Adapter(List<Product> product_list){
 //        this.product_list = product_list;
         this.product_list = product_list;
     }

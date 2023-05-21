@@ -1,12 +1,9 @@
-package com.example.bargain;
+package com.example.bargain.Threads;
 
-import android.content.Context;
-import android.util.Log;
-
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
+import com.example.bargain.Creating_Objects_From_Shops.MobileCentre;
+import com.example.bargain.Creating_Objects_From_Shops.Vega;
+import com.example.bargain.Creating_Objects_From_Shops.YerevanMobile;
+import com.example.bargain.Creating_Objects_From_Shops.Zigzag;
 
 public class MyThread implements Runnable {
     Vega vega;
