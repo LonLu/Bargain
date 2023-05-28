@@ -4,10 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.example.bargain.Activities.MainActivity;
+import com.example.bargain.Activities.RecyclerViewActivity;
 
 import java.util.List;
 
@@ -16,7 +21,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
 
 
     public Adapter(List<Product> product_list){
-//        this.product_list = product_list;
         this.product_list = product_list;
     }
 
@@ -36,6 +40,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
         Product product = product_list.get(position);
         holder.sName.setText(product.getName());
         holder.sPrice.setText(product.getCash_Price());
+        String img_url = product.getImage();
+        Glide.with(holder.itemView.getContext()).load(img_url).into(holder.imageView);
+
     }
 
     @Override
@@ -52,10 +59,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
     public static class RecyclerViewExemplar extends RecyclerView.ViewHolder{
         TextView sName;
         TextView sPrice;
+        ImageView imageView;
         public RecyclerViewExemplar(@NonNull View itemView) {
             super(itemView);
             sName = itemView.findViewById(R.id.tv_setName);
             sPrice = itemView.findViewById(R.id.tv_setPrice);
+            imageView = (ImageView) itemView.findViewById(R.id.imageView);
         }
     }
 }

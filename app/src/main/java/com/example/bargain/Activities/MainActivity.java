@@ -5,9 +5,12 @@ import androidx.appcompat.widget.SearchView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.bargain.Creating_Objects_From_Shops.YerevanMobile;
 import com.example.bargain.R;
 import com.google.firebase.database.DatabaseReference;
@@ -19,17 +22,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton tablet;
     ImageButton notebook;
     ImageButton accessories;
-    ImageButton home;
-    ImageButton wait;
-    ImageButton settings;
     Intent phone_intent;
     Intent tablet_intent;
     Intent notebook_intent;
     Intent accessories_intent;
-
-    Intent home_intent;
-    Intent wait_intent;
-    Intent settings_intent;
 
 
     DatabaseReference database;
@@ -43,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
-//        MyThread myThread = new MyThread();
-//        Thread thread = new Thread(myThread);
-//        thread.start();
-//        try {
-//            thread.join();
-//        } catch (InterruptedException e) {
-//            Log.i("miBan", e.toString());
-//        }
-//
-//        database.push().setValue(myThread.getVega());
-//        database.push().setValue(myThread.getMobileCentre());
-//        database.push().setValue(myThread.getZigzag());
-
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,29 +46,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchView.onActionViewExpanded();
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        return true;
-                    }
-                });
-            }
-        });
-
-
+//        VegaThread vegaThread = new VegaThread();
+//        Thread thread_vega = new Thread(vegaThread);
+//        thread_vega.start();
+//
+//        MobileCentreThread mobileCentreThread = new MobileCentreThread();
+//        Thread thread_mobileCentre = new Thread(mobileCentreThread);
+//        thread_mobileCentre.start();
+//
+//        ZigzagThread zigzagThread = new ZigzagThread();
+//        Thread thread_zigzag = new Thread(zigzagThread);
+//        thread_zigzag.start();
 
     }
+
+
     public void init(){
         database = FirebaseDatabase.getInstance().getReference();
 
@@ -95,20 +70,32 @@ public class MainActivity extends AppCompatActivity {
         tablet = (ImageButton) findViewById(R.id.btnImg_tablet);
         notebook = (ImageButton) findViewById(R.id.btnImg_notebook);
         accessories = (ImageButton) findViewById(R.id.btnImg_accessory) ;
-        home = (ImageButton) findViewById(R.id.btnImg_home);
-        wait = (ImageButton) findViewById(R.id.btnImg_wait);
-        settings = (ImageButton) findViewById(R.id.btnImg_settings);
 
         phone_intent = new Intent(this, RecyclerViewActivity.class);
         tablet_intent = new Intent(this, RecyclerViewActivity.class);
         notebook_intent = new Intent(this, RecyclerViewActivity.class);
         accessories_intent = new Intent(this, RecyclerViewActivity.class);
 
+//        Glide.with(this).load(R.drawable.phone).into(phone);
+        Glide.with(this).load(R.drawable.phone1).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(phone);
+        Glide.with(this).load(R.drawable.tablet).skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(tablet);
+        Glide.with(this).load(R.drawable.notebook).fitCenter().into(notebook);
 
-        home_intent = new Intent(this, MainActivity.class);
 
 //        getFromYerevanMobile();
 
+    }
+
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // Размеры доступны здесь
+            int width = phone.getWidth();
+            int height = phone.getHeight();
+            Log.i("parameterss", width + " " + height);
+        }
     }
 
 

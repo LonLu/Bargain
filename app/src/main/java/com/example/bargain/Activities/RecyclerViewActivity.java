@@ -43,7 +43,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         adapter = new Adapter(products);
         recyclerView.setAdapter(adapter);
 
-        database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference("Phones");
 
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override

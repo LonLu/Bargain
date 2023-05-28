@@ -6,7 +6,7 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
-class GetURLsFromVega {
+public class GetURLsFromVega {
     private ArrayList<String> urlList_for_phone = new ArrayList<>();
     private ArrayList<String> urlList_for_tablet = new ArrayList<>();
     private ArrayList<String> urlList_for_notebook = new ArrayList<>();
