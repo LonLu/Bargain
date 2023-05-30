@@ -4,6 +4,7 @@ public class Product {
     private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
+    private boolean isExpanded;
 
     public Product(){}
 
@@ -24,6 +25,8 @@ public class Product {
         this.url = url;
         this.sim = sim;
         this.availability = availability;
+
+        this.isExpanded = false;
     }
 
     public String getName() {
@@ -152,5 +155,16 @@ public class Product {
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
+    }
+
+
+
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
     }
 }

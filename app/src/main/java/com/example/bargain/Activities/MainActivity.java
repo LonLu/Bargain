@@ -76,13 +76,6 @@ public class MainActivity extends AppCompatActivity {
         notebook_intent = new Intent(this, RecyclerViewActivity.class);
         accessories_intent = new Intent(this, RecyclerViewActivity.class);
 
-//        Glide.with(this).load(R.drawable.phone).into(phone);
-        Glide.with(this).load(R.drawable.phone1).skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE).into(phone);
-        Glide.with(this).load(R.drawable.tablet).skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE).into(tablet);
-        Glide.with(this).load(R.drawable.notebook).fitCenter().into(notebook);
-
 
 //        getFromYerevanMobile();
 
