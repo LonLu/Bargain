@@ -40,7 +40,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         products = new ArrayList<>();
-        adapter = new Adapter(products);
+        adapter = new Adapter(products, getApplicationContext());
         recyclerView.setAdapter(adapter);
 
         database = FirebaseDatabase.getInstance().getReference("Phones");

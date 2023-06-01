@@ -43,6 +43,20 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/tv_setName" />
 
+    <TextView
+        android:id="@+id/tv_setAvailability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="40sp"
+        android:autoSizeMinTextSize="10sp"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/tv_setPrice" />
+
     <ImageView
         android:id="@+id/btn_additional"
         android:layout_width="wrap_content"
@@ -60,12 +74,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/tv_setAvailability">
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -73,6 +92,11 @@
             android:id="@+id/product_cash_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -80,6 +104,11 @@
             android:id="@+id/product_not_cash_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -87,6 +116,11 @@
             android:id="@+id/product_release_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -94,6 +128,11 @@
             android:id="@+id/product_guarantee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -101,6 +140,11 @@
             android:id="@+id/product_processor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -108,6 +152,11 @@
             android:id="@+id/product_os"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -115,6 +164,11 @@
             android:id="@+id/product_memory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -122,6 +176,11 @@
             android:id="@+id/product_memory_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -129,6 +188,11 @@
             android:id="@+id/product_ram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -136,6 +200,11 @@
             android:id="@+id/product_screen_length"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -143,6 +212,11 @@
             android:id="@+id/product_camera"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -150,6 +224,11 @@
             android:id="@+id/product_sim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -157,9 +236,15 @@
             android:id="@+id/product_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="13sp"
+            android:gravity="start"
+            android:padding="3dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

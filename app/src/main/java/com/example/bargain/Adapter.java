@@ -1,6 +1,8 @@
 package com.example.bargain;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +21,12 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> {
     List<Product> product_list;
+    private Context context;
 
 
-    public Adapter(List<Product> product_list){
+    public Adapter(List<Product> product_list, Context context){
         this.product_list = product_list;
+        this.context = context;
     }
 
     @NonNull
@@ -36,6 +40,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
         return exemplar;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewExemplar holder, int position) {
         Product product = product_list.get(position);
@@ -44,58 +49,67 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
         String img_url = product.getImage();
         Glide.with(holder.itemView.getContext()).load(img_url).into(holder.imageView);
 
+        if (product.isAvailability()){
+            holder.sAvailability.setText(context.getString(R.string.available));
+            holder.sAvailability.setTextColor(Color.GREEN);
+        }else{
+            holder.sAvailability.setText(context.getString(R.string.not_available));
+            holder.sAvailability.setTextColor(Color.RED);
+        }
+
         if (product.isExpanded()) {
             holder.additional_info.setImageResource(R.drawable.baseline_arrow_drop_up_24);
             if (product.getName() != null){
-                holder.name.setText(product.getName());
+                holder.name.setText(context.getString(R.string.name) + " " + product.getName());
                 holder.name.setVisibility(View.VISIBLE);
             }
             if (product.getCash_Price() != null){
-                holder.cash_Price.setText(product.getCash_Price());
+                if (product.getNot_Cash_Price() == null) holder.cash_Price.setText(context.getString(R.string.price) + " " + product.getCash_Price());
+                else holder.cash_Price.setText(context.getString(R.string.cash_price) + " " + product.getCash_Price());
                 holder.cash_Price.setVisibility(View.VISIBLE);
             }
             if (product.getNot_Cash_Price() != null){
-                holder.not_Cash_Price.setText(product.getNot_Cash_Price());
+                holder.not_Cash_Price.setText(context.getString(R.string.not_cash_price) + " " + product.getNot_Cash_Price());
                 holder.not_Cash_Price.setVisibility(View.VISIBLE);
             }
             if (product.getRelease_Date() != null){
-                holder.release_Date.setText(product.getRelease_Date());
+                holder.release_Date.setText(context.getString(R.string.release_date) + " " + product.getRelease_Date());
                 holder.release_Date.setVisibility(View.VISIBLE);
             }
             if (product.getGuarantee() != null){
-                holder.guarantee.setText(product.getGuarantee());
+                holder.guarantee.setText(context.getString(R.string.guarantee) + " " + product.getGuarantee());
                 holder.guarantee.setVisibility(View.VISIBLE);
             }
             if (product.getProcessor() != null){
-                holder.processor.setText(product.getProcessor());
+                holder.processor.setText(context.getString(R.string.processor) + " " + product.getProcessor());
                 holder.processor.setVisibility(View.VISIBLE);
             }
             if (product.getOs() != null){
-                holder.os.setText(product.getOs());
+                holder.os.setText(context.getString(R.string.os) + " " + product.getOs());
                 holder.os.setVisibility(View.VISIBLE);
             }
             if (product.getMemory() != null){
-                holder.memory.setText(product.getMemory());
+                holder.memory.setText(context.getString(R.string.memory) + " " + product.getMemory());
                 holder.memory.setVisibility(View.VISIBLE);
             }
             if (product.getMemory_Type() != null){
-                holder.memory_Type.setText(product.getMemory_Type());
+                holder.memory_Type.setText(context.getString(R.string.memory_type) + " " + product.getMemory_Type());
                 holder.memory_Type.setVisibility(View.VISIBLE);
             }
             if (product.getRam() != null){
-                holder.ram.setText(product.getRam());
+                holder.ram.setText(context.getString(R.string.ram) + " " + product.getRam());
                 holder.ram.setVisibility(View.VISIBLE);
             }
             if (product.getScreen_Length() != null){
-                holder.screen_Length.setText(product.getScreen_Length());
+                holder.screen_Length.setText(context.getString(R.string.screen_length) + " " + product.getScreen_Length());
                 holder.screen_Length.setVisibility(View.VISIBLE);
             }
             if (product.getCamera() != null){
-                holder.camera.setText(product.getCamera());
+                holder.camera.setText(context.getString(R.string.camera) + " " + product.getCamera());
                 holder.camera.setVisibility(View.VISIBLE);
             }
             if (product.getSim() != null){
-                holder.sim.setText(product.getSim());
+                holder.sim.setText(context.getString(R.string.sim) + " " + product.getSim());
                 holder.sim.setVisibility(View.VISIBLE);
             }
             if (product.getUrl() != null){
@@ -138,6 +152,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
     public class RecyclerViewExemplar extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView sName;
         private TextView sPrice;
+        private TextView sAvailability;
         private ImageView imageView;
 
         private ImageView additional_info;
@@ -148,6 +163,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
             super(itemView);
             sName = itemView.findViewById(R.id.tv_setName);
             sPrice = itemView.findViewById(R.id.tv_setPrice);
+            sAvailability = itemView.findViewById(R.id.tv_setAvailability);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             additional_info = (ImageView) itemView.findViewById(R.id.btn_additional);
             itemView.setOnClickListener(this);

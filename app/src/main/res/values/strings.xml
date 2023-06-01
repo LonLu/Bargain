@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Bargain</string>
     <string name="search">Search…</string>
+    <string name="name">Name: </string>
+    <string name="not_available">Not Available</string>
+    <string name="available">Available</string>
+    <string name="ym_not_available">Not Available(Can Be Ordered)</string>
+    <string name="cash_price">Cash Price: </string>
+    <string name="not_cash_price">Price By Card: </string>
+    <string name="price">Price: </string>
+    <string name="release_date">Release Date: </string>
+    <string name="guarantee">Guarantee: </string>
+    <string name="processor">Processor: </string>
+    <string name="os">OS: </string>
+    <string name="memory">Memory: </string>
+    <string name="memory_type">Memory Type: </string>
+    <string name="ram">Ram: </string>
+    <string name="screen_length">Screen Length:  </string>
+    <string name="camera">Camera(MP): </string>
+    <string name="sim">SIM: </string>
 </resources>
