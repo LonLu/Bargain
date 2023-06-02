@@ -1,5 +1,7 @@
 package com.example.bargain.Creating_Objects_From_Shops;
 
+import com.example.bargain.Product;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -7,7 +9,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Vega {
+public class Vega extends Product {
     private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory = "",
             memory_Type = "", ram, screen_Length, camera, url, sim;
     private boolean Availability;

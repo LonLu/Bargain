@@ -5,14 +5,16 @@ import androidx.appcompat.widget.SearchView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.bargain.Constants;
 import com.example.bargain.Creating_Objects_From_Shops.YerevanMobile;
 import com.example.bargain.R;
+import com.example.bargain.ThreadForCreatingObjects.MobileCentreThread;
+import com.example.bargain.ThreadForCreatingObjects.VegaThread;
+import com.example.bargain.ThreadForCreatingObjects.YerevanMobileThread;
+import com.example.bargain.ThreadForCreatingObjects.ZigzagThread;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
     Intent tablet_intent;
     Intent notebook_intent;
     Intent accessories_intent;
-
-
-    DatabaseReference database;
     SearchView searchView;
 
 
@@ -42,28 +41,47 @@ public class MainActivity extends AppCompatActivity {
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                phone_intent.putExtra(Constants.EXTRA, Constants.PHONE);
                 startActivity(phone_intent);
             }
         });
 
-//        VegaThread vegaThread = new VegaThread();
-//        Thread thread_vega = new Thread(vegaThread);
-//        thread_vega.start();
-//
-//        MobileCentreThread mobileCentreThread = new MobileCentreThread();
-//        Thread thread_mobileCentre = new Thread(mobileCentreThread);
-//        thread_mobileCentre.start();
-//
-//        ZigzagThread zigzagThread = new ZigzagThread();
-//        Thread thread_zigzag = new Thread(zigzagThread);
-//        thread_zigzag.start();
+        tablet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tablet_intent.putExtra(Constants.EXTRA, Constants.TABLET);
+                startActivity(tablet_intent);
+            }
+        });
+
+        notebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notebook_intent.putExtra(Constants.EXTRA, Constants.NOTEBOOK);
+                startActivity(notebook_intent);
+            }
+        });
+
+        VegaThread vegaThread = new VegaThread();
+        Thread thread_vega = new Thread(vegaThread);
+        thread_vega.start();
+
+        MobileCentreThread mobileCentreThread = new MobileCentreThread();
+        Thread thread_mobileCentre = new Thread(mobileCentreThread);
+        thread_mobileCentre.start();
+
+        ZigzagThread zigzagThread = new ZigzagThread();
+        Thread thread_zigzag = new Thread(zigzagThread);
+        thread_zigzag.start();
+
+        YerevanMobileThread yerevanMobileThread = new YerevanMobileThread(this);
+        Thread thread_yerevanMobile = new Thread(yerevanMobileThread);
+        thread_yerevanMobile.start();
 
     }
 
 
     public void init(){
-        database = FirebaseDatabase.getInstance().getReference();
-
         searchView = (SearchView) findViewById(R.id.search);
 
         phone = (ImageButton) findViewById(R.id.btnImg_phone);
@@ -77,41 +95,6 @@ public class MainActivity extends AppCompatActivity {
         accessories_intent = new Intent(this, RecyclerViewActivity.class);
 
 
-//        getFromYerevanMobile();
-
-    }
-
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            // Размеры доступны здесь
-            int width = phone.getWidth();
-            int height = phone.getHeight();
-            Log.i("parameterss", width + " " + height);
-        }
-    }
-
-
-
-    public void getFromYerevanMobile(){
-
-        int firstIndex = 0;
-        int secondIndex = 0;
-        boolean firstBool = true;
-        int exceptionCounter = 0;
-        while (firstBool){
-            try {
-                YerevanMobile yerevanMobile = new YerevanMobile(this, firstIndex, secondIndex);
-                database.push().setValue(yerevanMobile);
-                secondIndex++;
-                exceptionCounter = 0;
-            }catch (Exception e){
-                firstIndex++;
-                secondIndex = 0;
-                exceptionCounter++;
-                if(exceptionCounter == 2) firstBool = false;
-            }
-        }
     }
 
 }

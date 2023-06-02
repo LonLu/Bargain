@@ -18,12 +18,12 @@ public class YerevanMobile {
     private YerevanMobile() {
     }
 
-    public YerevanMobile(Context context, int objectListIndex, int oneObjectIndex){
+    public YerevanMobile(Context context, int objectListIndex, int oneObjectIndex, String electronic_type){
         ArrayList<ArrayList<ArrayList<String>>> objects_list = null;
         AssetManager assetManager = context.getAssets();
         try {
             // Открытие потока для чтения файла
-            InputStream inputStream = assetManager.open("YMArray.ser");
+            InputStream inputStream = assetManager.open(electronic_type);
             // Чтение данных из потока
             ObjectInputStream in = new ObjectInputStream(inputStream);
             objects_list = (ArrayList<ArrayList<ArrayList<String>>>) in.readObject();

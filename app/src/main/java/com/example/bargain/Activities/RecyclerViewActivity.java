@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bargain.Adapter;
+import com.example.bargain.Constants;
 import com.example.bargain.Product;
 import com.example.bargain.R;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +44,8 @@ public class RecyclerViewActivity extends AppCompatActivity {
         adapter = new Adapter(products, getApplicationContext());
         recyclerView.setAdapter(adapter);
 
-        database = FirebaseDatabase.getInstance().getReference("Phones");
+        String extra_from_intent = getIntent().getStringExtra(Constants.EXTRA);
+        database = FirebaseDatabase.getInstance().getReference(extra_from_intent);
 
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,10 +97,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        database.removeEventListener(valueEventListener);
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        database.removeEventListener(valueEventListener);
+//    }
 }
 
