@@ -62,7 +62,6 @@ public class MobileCentre extends Product {
         String[] array_amount = amount.split("");
         StringBuilder price_builder = new StringBuilder();
         for (int j = 0; j < array_amount.length - 3; j++) {
-            if (Objects.equals(array_amount[j], ",")) array_amount[j] = ".";
             price_builder.append(array_amount[j]);
         }
         cash_Price = price_builder.toString();

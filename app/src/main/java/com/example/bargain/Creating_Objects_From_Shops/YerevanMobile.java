@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
+import com.example.bargain.Product;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class YerevanMobile {
+public class YerevanMobile extends Product {
     private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;

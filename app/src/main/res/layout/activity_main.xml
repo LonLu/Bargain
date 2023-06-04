@@ -29,51 +29,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btnImg_phone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="3dp"
             android:layout_weight="0.5"
-            android:orientation="vertical">
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            <ImageButton
-                android:id="@+id/btnImg_phone"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="3dp"
-                android:layout_weight="0.5"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-            <ImageButton
-                android:id="@+id/btnImg_tablet"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="3dp"
-                android:layout_weight="0.5"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btnImg_tablet"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="3dp"
             android:layout_weight="0.5"
-            android:orientation="vertical">
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            <ImageButton
-                android:id="@+id/btnImg_notebook"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="3dp"
-                android:layout_weight="0.5"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-            <ImageButton
-                android:id="@+id/btnImg_accessory"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="3dp"
-                android:layout_weight="0.5"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/btnImg_notebook"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="3dp"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
     </LinearLayout>
 

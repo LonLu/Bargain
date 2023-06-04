@@ -23,11 +23,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton phone;
     ImageButton tablet;
     ImageButton notebook;
-    ImageButton accessories;
+
     Intent phone_intent;
     Intent tablet_intent;
     Intent notebook_intent;
-    Intent accessories_intent;
     SearchView searchView;
 
 
@@ -62,21 +61,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        VegaThread vegaThread = new VegaThread();
-        Thread thread_vega = new Thread(vegaThread);
-        thread_vega.start();
-
-        MobileCentreThread mobileCentreThread = new MobileCentreThread();
-        Thread thread_mobileCentre = new Thread(mobileCentreThread);
-        thread_mobileCentre.start();
-
-        ZigzagThread zigzagThread = new ZigzagThread();
-        Thread thread_zigzag = new Thread(zigzagThread);
-        thread_zigzag.start();
-
-        YerevanMobileThread yerevanMobileThread = new YerevanMobileThread(this);
-        Thread thread_yerevanMobile = new Thread(yerevanMobileThread);
-        thread_yerevanMobile.start();
+//        VegaThread vegaThread = new VegaThread();
+//        Thread thread_vega = new Thread(vegaThread);
+//        thread_vega.start();
+//
+//        MobileCentreThread mobileCentreThread = new MobileCentreThread();
+//        Thread thread_mobileCentre = new Thread(mobileCentreThread);
+//        thread_mobileCentre.start();
+//
+//        ZigzagThread zigzagThread = new ZigzagThread();
+//        Thread thread_zigzag = new Thread(zigzagThread);
+//        thread_zigzag.start();
+//
+//        YerevanMobileThread yerevanMobileThread = new YerevanMobileThread(this);
+//        Thread thread_yerevanMobile = new Thread(yerevanMobileThread);
+//        thread_yerevanMobile.start();
 
     }
 
@@ -87,12 +86,10 @@ public class MainActivity extends AppCompatActivity {
         phone = (ImageButton) findViewById(R.id.btnImg_phone);
         tablet = (ImageButton) findViewById(R.id.btnImg_tablet);
         notebook = (ImageButton) findViewById(R.id.btnImg_notebook);
-        accessories = (ImageButton) findViewById(R.id.btnImg_accessory) ;
 
         phone_intent = new Intent(this, RecyclerViewActivity.class);
         tablet_intent = new Intent(this, RecyclerViewActivity.class);
         notebook_intent = new Intent(this, RecyclerViewActivity.class);
-        accessories_intent = new Intent(this, RecyclerViewActivity.class);
 
 
     }

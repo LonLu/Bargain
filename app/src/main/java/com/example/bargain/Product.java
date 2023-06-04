@@ -158,13 +158,69 @@ public class Product {
     }
 
 
-
-
     public boolean isExpanded() {
         return isExpanded;
     }
 
     public void setExpanded(boolean expanded) {
         isExpanded = expanded;
+    }
+
+
+
+
+    public int get_int_price(String product_url, String string_price){
+        int int_price = 0;
+
+        String url_without_https = product_url.split("https://")[1];
+        String url_without_www = null;
+        try{
+            url_without_www = url_without_https.split("www.")[1];
+        }catch (Exception e){
+            url_without_www = url_without_https;
+        }
+        String final_url = url_without_www.split(".am")[0];
+
+        if (final_url.equals("yerevanmobile")){
+            String price_without_amd = string_price.split("֏ ")[1];
+            String[] numbers = price_without_amd.split(" ");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }
+
+        if (final_url.equals("zigzag")){
+            String price_without_amd = string_price.split(" ֏")[0];
+            String[] numbers = price_without_amd.split(",");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }
+
+        if (final_url.equals("vega")){
+            String price_without_amd = string_price.split(" ֏")[0];
+            String[] numbers = price_without_amd.split(" ");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }
+
+        if (final_url.equals("mobilecentre")){
+            String price_without_amd = string_price.split("դր.")[0];
+            String[] numbers = price_without_amd.split(",");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }
+
+        return int_price;
     }
 }

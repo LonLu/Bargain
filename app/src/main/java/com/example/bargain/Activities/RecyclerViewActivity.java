@@ -92,15 +92,33 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 filteredList.add(item);
             }
         }
+
+//        filteredList = sort(filteredList);
         adapter.filterList(filteredList);
     }
 
-
-
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        database.removeEventListener(valueEventListener);
+//    public List<Product> sort(List<Product> product_list){
+//        for (int i = 0; i < product_list.size() - 1; i++){
+//            for (int j = 0; j < product_list.size() - i - 1; j++){
+//                if (product_list.get(j).getCash_Price() != null && product_list.get(j+1).getCash_Price() != null && product_list.get(j).getUrl() != null && product_list.get(j+1).getUrl() != null){
+//                    if (product_list.get(j).get_int_price(product_list.get(j).getUrl(), product_list.get(j).getCash_Price())
+//                            > product_list.get(j+1).get_int_price(product_list.get(j+1).getUrl(), product_list.get(j+1).getCash_Price())){
+//                        Product product = product_list.get(j);
+//                        product_list.set(j, product_list.get(j+1));
+//                        product_list.set(j+1, product);
+//                    }
+//                }
+//            }
+//        }
+//        return product_list;
 //    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        database.removeEventListener(valueEventListener);
+    }
 }
 
