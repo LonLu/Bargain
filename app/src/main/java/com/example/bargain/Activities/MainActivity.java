@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 //                    all_phones.addAll(vegaThread.getVega_phones());
 //                    all_phones = getAvailable(all_phones);
 //                    all_phones.sort(Comparator.comparingInt(Product::getInt_price));
-//                    for(int i = 0; i < all_phones.size(); i++){
+//                    for(int i = 10; i < all_phones.size(); i++){
 //                        database_phone.push().setValue(all_phones.get(i));
 //                    }
 //

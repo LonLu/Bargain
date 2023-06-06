@@ -51,7 +51,7 @@ public class MobileCentre extends Product {
             url = URL;
         }
 
-        processor = processorBuilder.toString();
+        if (!processorBuilder.equals(null)) processor = processorBuilder.toString();
         name = doc.select("h1").text();
 
         Elements img = doc.getElementsByClass("item active").select("img");
