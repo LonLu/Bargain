@@ -6,9 +6,11 @@ public class Product {
     private boolean availability;
     private boolean isExpanded;
 
+    private int int_price;
+
     public Product(){}
 
-    public Product(String name, String cash_Price, String not_Cash_Price, String image, String release_Date, String guarantee, String processor, String os, String memory, String memory_Type, String ram, String screen_Length, String camera, String url, String sim, boolean availability) {
+    public Product(String name, String cash_Price, String not_Cash_Price, String image, String release_Date, String guarantee, String processor, String os, String memory, String memory_Type, String ram, String screen_Length, String camera, String url, String sim, boolean availability, int int_price) {
         this.name = name;
         this.cash_Price = cash_Price;
         this.not_Cash_Price = not_Cash_Price;
@@ -25,6 +27,7 @@ public class Product {
         this.url = url;
         this.sim = sim;
         this.availability = availability;
+        this.int_price = int_price;
 
         this.isExpanded = false;
     }
@@ -166,61 +169,7 @@ public class Product {
         isExpanded = expanded;
     }
 
-
-
-
-    public int get_int_price(String product_url, String string_price){
-        int int_price = 0;
-
-        String url_without_https = product_url.split("https://")[1];
-        String url_without_www = null;
-        try{
-            url_without_www = url_without_https.split("www.")[1];
-        }catch (Exception e){
-            url_without_www = url_without_https;
-        }
-        String final_url = url_without_www.split(".am")[0];
-
-        if (final_url.equals("yerevanmobile")){
-            String price_without_amd = string_price.split("֏ ")[1];
-            String[] numbers = price_without_amd.split(" ");
-            StringBuilder price = new StringBuilder();
-            for (int i = 0; i < numbers.length; i++){
-                price.append(numbers[i]);
-            }
-            int_price = Integer.parseInt(price.toString());
-        }
-
-        if (final_url.equals("zigzag")){
-            String price_without_amd = string_price.split(" ֏")[0];
-            String[] numbers = price_without_amd.split(",");
-            StringBuilder price = new StringBuilder();
-            for (int i = 0; i < numbers.length; i++){
-                price.append(numbers[i]);
-            }
-            int_price = Integer.parseInt(price.toString());
-        }
-
-        if (final_url.equals("vega")){
-            String price_without_amd = string_price.split(" ֏")[0];
-            String[] numbers = price_without_amd.split(" ");
-            StringBuilder price = new StringBuilder();
-            for (int i = 0; i < numbers.length; i++){
-                price.append(numbers[i]);
-            }
-            int_price = Integer.parseInt(price.toString());
-        }
-
-        if (final_url.equals("mobilecentre")){
-            String price_without_amd = string_price.split("դր.")[0];
-            String[] numbers = price_without_amd.split(",");
-            StringBuilder price = new StringBuilder();
-            for (int i = 0; i < numbers.length; i++){
-                price.append(numbers[i]);
-            }
-            int_price = Integer.parseInt(price.toString());
-        }
-
+    public int getInt_price() {
         return int_price;
     }
 }

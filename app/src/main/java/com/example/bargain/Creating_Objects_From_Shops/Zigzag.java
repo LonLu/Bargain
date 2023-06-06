@@ -12,8 +12,10 @@ import java.util.Objects;
 
 public class Zigzag extends Product {
     private String name, cash_Price, not_Cash_Price, image, release_Date, guarantee, processor, os, memory,
-            memory_Type, ram, screen_Length, camera, url, sim, type;
+            memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
+
+    int int_price;
 
     public Zigzag() {
     }
@@ -58,6 +60,18 @@ public class Zigzag extends Product {
         if(!SIM_builder.toString().equals("")) sim = SIM_builder.toString();
         processor = processor_builder.toString();
         url = URL;
+
+
+        try{
+            String price_without_amd = cash_Price.split(" ֏")[0];
+            String[] numbers = price_without_amd.split(",");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }catch (Exception e){}
+
 
 
     }
@@ -130,11 +144,11 @@ public class Zigzag extends Product {
         return sim;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public boolean isAvailability() {
         return availability;
+    }
+
+    public int getInt_price() {
+        return int_price;
     }
 }

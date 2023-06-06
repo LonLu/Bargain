@@ -17,6 +17,8 @@ public class YerevanMobile extends Product {
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
 
+    private int int_price;
+
     private YerevanMobile() {
     }
 
@@ -51,6 +53,18 @@ public class YerevanMobile extends Product {
         camera = one_object.get(13);
         processor = one_object.get(14);
         url = one_object.get(15);
+
+        try {
+            String price_without_amd = cash_Price.split("֏ ")[1];
+            String[] numbers = price_without_amd.split(" ");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }catch (Exception e){}
+
+
     }
 
     public String getName() {
@@ -115,5 +129,9 @@ public class YerevanMobile extends Product {
 
     public boolean isAvailability() {
         return availability;
+    }
+
+    public int getInt_price() {
+        return int_price;
     }
 }

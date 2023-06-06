@@ -14,6 +14,8 @@ public class Vega extends Product {
             memory_Type = "", ram, screen_Length, camera, url, sim;
     private boolean Availability;
 
+    private int int_price;
+
     public Vega() {}
 
     public Vega(String URL) {
@@ -74,6 +76,19 @@ public class Vega extends Product {
         if(Objects.equals(memory_Type, "")) memory_Type = null;
         if(Objects.equals(memory, "")) memory = null;
         url = URL;
+
+
+        try {
+            String price_without_amd = cash_Price.split(" ֏")[0];
+            String[] numbers = price_without_amd.split(" ");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }catch (Exception ign){}
+
+
     }
 
 
@@ -149,6 +164,10 @@ public class Vega extends Product {
 
     public boolean isAvailability() {
         return Availability;
+    }
+
+    public int getInt_price() {
+        return int_price;
     }
 }
 

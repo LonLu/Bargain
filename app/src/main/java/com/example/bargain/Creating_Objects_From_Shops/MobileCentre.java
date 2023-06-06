@@ -16,6 +16,8 @@ public class MobileCentre extends Product {
             memory_Type, ram, screen_Length, camera, url, sim;
     private boolean availability;
 
+    private int int_price;
+
     public MobileCentre() {
     }
 
@@ -65,6 +67,18 @@ public class MobileCentre extends Product {
             price_builder.append(array_amount[j]);
         }
         cash_Price = price_builder.toString();
+
+
+        try{
+            String price_without_amd = cash_Price.split("դր.")[0];
+            String[] numbers = price_without_amd.split(",");
+            StringBuilder price = new StringBuilder();
+            for (int i = 0; i < numbers.length; i++){
+                price.append(numbers[i]);
+            }
+            int_price = Integer.parseInt(price.toString());
+        }catch (Exception ign){}
+
     }
 
     public Document getDocument(String URL) {
@@ -139,5 +153,9 @@ public class MobileCentre extends Product {
 
     public boolean isAvailability() {
         return availability;
+    }
+
+    public int getInt_price() {
+        return int_price;
     }
 }
