@@ -7,20 +7,21 @@ import com.example.bargain.Creating_Objects_From_Shops.YerevanMobile;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+import java.util.ArrayList;
+
 public class YerevanMobileThread implements Runnable{
-    DatabaseReference database_phone;
-    DatabaseReference database_tablet;
-    DatabaseReference database_notebook;
     Context context;
+    ArrayList<YerevanMobile> yerevanMobile_phones = new ArrayList<>();
+    ArrayList<YerevanMobile> yerevanMobile_tablets = new ArrayList<>();
+    ArrayList<YerevanMobile> yerevanMobile_notebooks = new ArrayList<>();
+
 
     public YerevanMobileThread(Context context){
         this.context = context;
     }
     @Override
     public void run() {
-        database_phone = FirebaseDatabase.getInstance().getReference(Constants.PHONE);
-        database_tablet = FirebaseDatabase.getInstance().getReference(Constants.TABLET);
-        database_notebook = FirebaseDatabase.getInstance().getReference(Constants.NOTEBOOK);
         get_phone_from_YerevanMobile();
         get_tablet_from_YerevanMobile();
         get_notebook_from_YerevanMobile();
@@ -34,7 +35,7 @@ public class YerevanMobileThread implements Runnable{
         while (firstBool){
             try {
                 YerevanMobile yerevanMobile = new YerevanMobile(context, firstIndex, secondIndex, Constants.YM_PHONE);
-                database_phone.push().setValue(yerevanMobile);
+                yerevanMobile_phones.add(yerevanMobile);
                 secondIndex++;
                 exceptionCounter = 0;
             }catch (Exception e){
@@ -55,7 +56,7 @@ public class YerevanMobileThread implements Runnable{
         while (firstBool){
             try {
                 YerevanMobile yerevanMobile = new YerevanMobile(context, firstIndex, secondIndex, Constants.YM_TABLET);
-                database_tablet.push().setValue(yerevanMobile);
+                yerevanMobile_tablets.add(yerevanMobile);
                 secondIndex++;
                 exceptionCounter = 0;
             }catch (Exception e){
@@ -75,7 +76,7 @@ public class YerevanMobileThread implements Runnable{
         while (firstBool){
             try {
                 YerevanMobile yerevanMobile = new YerevanMobile(context, firstIndex, secondIndex, Constants.YM_NOTEBOOK);
-                database_notebook.push().setValue(yerevanMobile);
+                yerevanMobile_notebooks.add(yerevanMobile);
                 secondIndex++;
                 exceptionCounter = 0;
             }catch (Exception e){
@@ -85,5 +86,17 @@ public class YerevanMobileThread implements Runnable{
                 if(exceptionCounter == 2) firstBool = false;
             }
         }
+    }
+
+    public ArrayList<YerevanMobile> getYerevanMobile_phones() {
+        return yerevanMobile_phones;
+    }
+
+    public ArrayList<YerevanMobile> getYerevanMobile_tablets() {
+        return yerevanMobile_tablets;
+    }
+
+    public ArrayList<YerevanMobile> getYerevanMobile_notebooks() {
+        return yerevanMobile_notebooks;
     }
 }

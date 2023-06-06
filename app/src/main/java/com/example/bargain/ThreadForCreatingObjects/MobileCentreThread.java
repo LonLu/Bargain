@@ -16,9 +16,10 @@ public class MobileCentreThread implements Runnable {
     ArrayList<String> mobileCentre_tablet_url;
     ArrayList<String> mobileCentre_notebook_url;
     MobileCentre mobileCentre;
-    DatabaseReference database_phone = FirebaseDatabase.getInstance().getReference(Constants.PHONE);
-    DatabaseReference database_tablet = FirebaseDatabase.getInstance().getReference(Constants.TABLET);
-    DatabaseReference database_notebook = FirebaseDatabase.getInstance().getReference(Constants.NOTEBOOK);
+
+    ArrayList<MobileCentre> mobileCentre_phones = new ArrayList<>();
+    ArrayList<MobileCentre> mobileCentre_tablets = new ArrayList<>();
+    ArrayList<MobileCentre> mobileCentre_notebooks = new ArrayList<>();
     @Override
     public void run() {
 
@@ -37,22 +38,34 @@ public class MobileCentreThread implements Runnable {
         for (int i = 0; i < mobileCentre_phone_url.size(); i++){
             try{
                 mobileCentre = new MobileCentre(mobileCentre_phone_url.get(i));
-                database_phone.push().setValue(mobileCentre);
+                mobileCentre_phones.add(mobileCentre);
             }catch (Exception ignored){Log.i("tenanqQani", ignored.toString());}
         }
 
         for (int i = 0; i < mobileCentre_tablet_url.size(); i++){
             try{
                 mobileCentre = new MobileCentre(mobileCentre_tablet_url.get(i));
-                database_tablet.push().setValue(mobileCentre);
+                mobileCentre_tablets.add(mobileCentre);
             }catch (Exception ignored){Log.i("tenanqQani", ignored.toString());}
         }
 
         for (int i = 0; i < mobileCentre_notebook_url.size(); i++){
             try{
                 mobileCentre = new MobileCentre(mobileCentre_notebook_url.get(i));
-                database_notebook.push().setValue(mobileCentre);
+                mobileCentre_notebooks.add(mobileCentre);
             }catch (Exception ignored){Log.i("tenanqQani", ignored.toString());}
         }
+    }
+
+    public ArrayList<MobileCentre> getMobileCentre_phones() {
+        return mobileCentre_phones;
+    }
+
+    public ArrayList<MobileCentre> getMobileCentre_tablets() {
+        return mobileCentre_tablets;
+    }
+
+    public ArrayList<MobileCentre> getMobileCentre_notebooks() {
+        return mobileCentre_notebooks;
     }
 }

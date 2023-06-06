@@ -16,9 +16,10 @@ public class ZigzagThread implements Runnable {
     ArrayList<String> zigzag_tablet_url;
     ArrayList<String> zigzag_notebook_url;
     Zigzag zigzag;
-    DatabaseReference database_phone = FirebaseDatabase.getInstance().getReference(Constants.PHONE);
-    DatabaseReference database_tablet = FirebaseDatabase.getInstance().getReference(Constants.TABLET);
-    DatabaseReference database_notebook = FirebaseDatabase.getInstance().getReference(Constants.NOTEBOOK);
+
+    ArrayList<Zigzag> zigzag_phones = new ArrayList<>();
+    ArrayList<Zigzag> zigzag_tablets = new ArrayList<>();
+    ArrayList<Zigzag> zigzag_notebooks = new ArrayList<>();
     @Override
     public void run() {
         ZigzagURLsListThread zigzagURLsListThread = new ZigzagURLsListThread();
@@ -36,7 +37,7 @@ public class ZigzagThread implements Runnable {
         for (int i = 0; i < zigzag_phone_url.size(); i++){
             try {
                 zigzag = new Zigzag(zigzag_phone_url.get(i));
-                database_phone.push().setValue(zigzag);
+                zigzag_phones.add(zigzag);
             }catch (Exception ignored){
                 Log.i("tenanqQani", ignored.toString());
             }
@@ -45,7 +46,7 @@ public class ZigzagThread implements Runnable {
         for (int i = 0; i < zigzag_tablet_url.size(); i++){
             try {
                 zigzag = new Zigzag(zigzag_tablet_url.get(i));
-                database_tablet.push().setValue(zigzag);
+                zigzag_tablets.add(zigzag);
             }catch (Exception ignored){
                 Log.i("tenanqQani", ignored.toString());
             }
@@ -54,11 +55,23 @@ public class ZigzagThread implements Runnable {
         for (int i = 0; i < zigzag_notebook_url.size(); i++){
             try {
                 zigzag = new Zigzag(zigzag_notebook_url.get(i));
-                database_notebook.push().setValue(zigzag);
+                zigzag_notebooks.add(zigzag);
             }catch (Exception ignored){
                 Log.i("tenanqQani", ignored.toString());
             }
         }
 
+    }
+
+    public ArrayList<Zigzag> getZigzag_phones() {
+        return zigzag_phones;
+    }
+
+    public ArrayList<Zigzag> getZigzag_tablets() {
+        return zigzag_tablets;
+    }
+
+    public ArrayList<Zigzag> getZigzag_notebooks() {
+        return zigzag_notebooks;
     }
 }
