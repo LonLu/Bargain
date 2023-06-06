@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
         Glide.with(this).load(R.drawable.phone_assortment).fitCenter()
                 .skipMemoryCache(true).into(phone);
-        Glide.with(this).load(R.drawable.tablet_picture).fitCenter()
+        Glide.with(this).load(R.drawable.big_tablet).fitCenter()
                 .skipMemoryCache(true).into(tablet);
         Glide.with(this).load(R.drawable.notebook_assortment).fitCenter()
                 .skipMemoryCache(true).into(notebook);
