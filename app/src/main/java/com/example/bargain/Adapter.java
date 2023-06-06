@@ -2,7 +2,9 @@ package com.example.bargain;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,8 +115,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.RecyclerViewExemplar> 
                 holder.sim.setVisibility(View.VISIBLE);
             }
             if (product.getUrl() != null){
-                holder.url.setText(product.getUrl());
                 holder.url.setVisibility(View.VISIBLE);
+                holder.url.setText(context.getString(R.string.url));
+                holder.url.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(product.getUrl()));
+                        holder.itemView.getContext().startActivity(intent);
+                    }
+                });
             }
 
 
