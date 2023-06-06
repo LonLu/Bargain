@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     Intent phone_intent;
     Intent tablet_intent;
     Intent notebook_intent;
-    SearchView searchView;
 
     DatabaseReference database_phone = FirebaseDatabase.getInstance().getReference(Constants.PHONE);
     DatabaseReference database_tablet = FirebaseDatabase.getInstance().getReference(Constants.TABLET);
@@ -156,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void init(){
-        searchView = (SearchView) findViewById(R.id.search);
 
         phone = (ImageButton) findViewById(R.id.btnImg_phone);
         tablet = (ImageButton) findViewById(R.id.btnImg_tablet);
